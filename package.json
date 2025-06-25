@@ -1,0 +1,10 @@
+{
+    "name": "@alexsch01/tsnode",
+    "private": false,
+    "version": "0.0.1",
+    "bin": "bin.js",
+    "scripts": {
+        "preinstall": "node scripts/preinstall.js",
+        "postinstall": "node scripts/postinstall.js"
+    }
+}
