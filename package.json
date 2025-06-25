@@ -8,5 +8,11 @@
     },
     "engines": {
         "node": ">=24.3.0"
-    }
+    },
+    "keywords": [
+        "ts",
+        "node",
+        "typescript",
+        "nodejs"
+    ]
 }
