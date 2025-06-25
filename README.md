@@ -1,6 +1,6 @@
 # tsnode
 
-Node version switcher for Microsoft Windows x64
+run ts files in node
 
 https://github.com/alexsch01/tsnode
 
