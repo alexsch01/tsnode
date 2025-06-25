@@ -1,4 +1,4 @@
-# nodeswitch
+# tsnode
 
 Node version switcher for Microsoft Windows x64
 
