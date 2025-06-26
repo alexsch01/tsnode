@@ -1,6 +1,6 @@
 {
     "name": "@alexsch01/tsnode",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "bin": "bin.js",
     "scripts": {
         "preinstall": "node scripts/preinstall.js",
