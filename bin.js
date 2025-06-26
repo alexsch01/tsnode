@@ -35,6 +35,6 @@ if (allDiagnostics.length > 0) {
     process.exit(1)
 }
 
-spawn.on('close', (code) => {
+spawn('node', myArgs, {stdio: 'inherit'}).on('close', (code) => {
     process.exit(code)
 })
