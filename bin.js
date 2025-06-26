@@ -4,7 +4,7 @@ let ts
 if (process.platform === 'win32') {
     ts = require('typescript')
 } else {
-    ts = require(require('path').resolve(__dirname, 'lib', 'node_modules', 'typescript'))
+    ts = require(require('path').resolve('lib', 'node_modules', 'typescript'))
 }
 const { spawn } = require('child_process')
 
