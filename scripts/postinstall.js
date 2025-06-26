@@ -1,4 +1,4 @@
 const { execSync } = require('child_process')
 const { resolve } = require('path')
 
-execSync(`npm install typescript --prefix "${resolve(__dirname, '..')}"`)
+execSync(`npm install typescript --prefix "${resolve(__dirname, '..')}" --no-bin-links`)
