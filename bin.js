@@ -1,5 +1,7 @@
 #! /usr/bin/env node
 
+const { existsSync, writeFileSync } = require('node:fs')
+const { spawn } = require('node:child_process')
 const { resolve } = require('node:path')
 
 let ts
@@ -8,9 +10,6 @@ if (process.platform === 'win32') {
 } else {
     ts = require(resolve(__dirname, 'lib', 'node_modules', 'typescript'))
 }
-
-const { existsSync, writeFileSync } = require('node:fs')
-const { spawn } = require('node:child_process')
 
 const myArgs = process.argv.slice(2)
 
