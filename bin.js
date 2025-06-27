@@ -4,13 +4,6 @@ const { existsSync, writeFileSync } = require('node:fs')
 const { spawnSync } = require('node:child_process')
 const { resolve } = require('node:path')
 
-let ts
-if (process.platform === 'win32') {
-    ts = require('typescript')
-} else {
-    ts = require(resolve(__dirname, 'lib', 'node_modules', 'typescript'))
-}
-
 const myArgs = process.argv.slice(2)
 
 if (myArgs[0] === '--init') {
@@ -53,25 +46,26 @@ if (firstTSFile === undefined) {
     process.exit(1)
 }
 
-const program = ts.createProgram([firstTSFile], {
-    "noEmit": true,
-    "target": ts.ScriptTarget.ESNext,
-    "module": ts.ModuleKind.NodeNext,
-    "rewriteRelativeImportExtensions": true,
-    "erasableSyntaxOnly": true,
-    "verbatimModuleSyntax": true
-})
+let tscPath
+if (process.platform === 'win32') {
+    tscPath = resolve(__dirname, 'node_modules', 'typescript', 'bin', 'tsc')
+} else {
+    tscPath = resolve(__dirname, 'lib', 'node_modules', 'typescript', 'bin', 'tsc')
+}
 
-const allDiagnostics = ts.getPreEmitDiagnostics(program)
-if (allDiagnostics.length > 0) {
-    const formatter = ts.formatDiagnosticsWithColorAndContext || ts.formatDiagnostics
-    console.error(formatter(allDiagnostics, {
-        getCurrentDirectory: () => ts.sys.getCurrentDirectory(),
-        getNewLine: () => ts.sys.newLine,
-        getCanonicalFileName: ts.sys.useCaseSensitiveFileNames ? f => f : f => f.toLowerCase(),
-    }).trimEnd())
+const tscStatus = spawnSync('node', [
+    tscPath,
+    '--noEmit',
+    '--target', 'esnext',
+    '--module', 'nodenext',
+    '--rewriteRelativeImportExtensions',
+    '--erasableSyntaxOnly',
+    '--verbatimModuleSyntax',
+    firstTSFile
+], {stdio: 'inherit'}).status
 
-    process.exit(1)
+if (tscStatus !== 0) {
+    process.exit(tscStatus)
 }
 
 process.exit(spawnSync('node', myArgs, {stdio: 'inherit'}).status)
