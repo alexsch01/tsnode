@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const { existsSync, writeFileSync } = require('node:fs')
-const { spawn } = require('node:child_process')
+const { spawnSync } = require('node:child_process')
 const { resolve } = require('node:path')
 
 let ts
@@ -74,6 +74,4 @@ if (allDiagnostics.length > 0) {
     process.exit(1)
 }
 
-spawn('node', myArgs, {stdio: 'inherit'}).on('close', (code) => {
-    process.exit(code)
-})
+process.exit(spawnSync('node', myArgs, {stdio: 'inherit'}).status)
