@@ -48,9 +48,9 @@ if (firstTSFile === undefined) {
 
 let tscPath
 if (process.platform === 'win32') {
-    tscPath = resolve(__dirname, 'node_modules', 'typescript', 'bin', 'tsc')
+    tscPath = resolve(__dirname, 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
 } else {
-    tscPath = resolve(__dirname, 'lib', 'node_modules', 'typescript', 'bin', 'tsc')
+    tscPath = resolve(__dirname, 'lib', 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
 }
 
 const tscStatus = spawnSync('node', [
