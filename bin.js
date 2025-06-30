@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const { existsSync, writeFileSync } = require('node:fs')
-const { spawnSync } = require('node:child_process')
+const { execSync, spawnSync } = require('node:child_process')
 const { resolve } = require('node:path')
 
 const myArgs = process.argv.slice(2)
@@ -37,6 +37,16 @@ if (myArgs[0] === '--init') {
         )
     }
 
+    process.exit()
+}
+
+if (myArgs[0] === '--update') {
+    if (myArgs.length !== 1) {
+        console.error("Error: Unknown command")
+        process.exit(1)
+    }
+
+    execSync(`npm install @typescript/native-preview --prefix "${__dirname}" --global --no-bin-links`)
     process.exit()
 }
 
