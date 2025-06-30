@@ -19,6 +19,7 @@ npm i -g @alexsch01/tsnode
 $ mkdir proj
 $ cd proj
 $ tsnode --init
+
 [Make a main.ts file]
 $ tsnode main.ts
 ```
