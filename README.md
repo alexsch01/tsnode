@@ -16,9 +16,9 @@ npm i -g @alexsch01/tsnode
 #### How To Use
 
 ```
-mkdir proj
-cd proj
-tsnode --init
-echo "console.log(123)" > main.ts
-tsnode main.ts
+$ mkdir proj
+$ cd proj
+$ tsnode --init
+[Make a main.ts file]
+$ tsnode main.ts
 ```
