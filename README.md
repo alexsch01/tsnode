@@ -8,13 +8,13 @@ https://github.com/alexsch01/tsnode
 
 #### How To Install
 
+requires Node.js v24.3.0 or later
 ```
 npm i -g @alexsch01/tsnode
 ```
 
 #### How To Use
 
-requires Node.js v24.3.0 or later
 ```
 mkdir proj
 cd proj
