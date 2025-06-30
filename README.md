@@ -1,6 +1,6 @@
 # tsnode
 
-run ts files in node
+run ts files in node with type-checking
 
 https://github.com/alexsch01/tsnode
 
@@ -10,4 +10,14 @@ https://github.com/alexsch01/tsnode
 
 ```
 npm i -g @alexsch01/tsnode
+```
+
+#### How To Use
+
+```
+mkdir proj
+cd proj
+tsnode --init
+echo "console.log(123)" > main.ts
+tsnode main.ts
 ```
