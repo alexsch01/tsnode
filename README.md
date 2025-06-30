@@ -6,14 +6,14 @@ https://github.com/alexsch01/tsnode
 
 <br>
 
-#### How To Install
+### How to install
 
 requires Node.js v24.3.0 or later
 ```
 npm i -g @alexsch01/tsnode
 ```
 
-#### How To Use
+### How to use
 
 ```
 $ mkdir proj
@@ -22,4 +22,10 @@ $ tsnode --init
 
 [Make a main.ts file]
 $ tsnode main.ts
+```
+
+### How to update TypeScript
+
+```
+$ tsnode --update
 ```
