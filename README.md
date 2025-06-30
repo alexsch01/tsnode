@@ -14,6 +14,7 @@ npm i -g @alexsch01/tsnode
 
 #### How To Use
 
+requires Node.js 24.3.0 and later
 ```
 mkdir proj
 cd proj
