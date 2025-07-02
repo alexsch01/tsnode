@@ -1,8 +1,8 @@
 #! /usr/bin/env node
 
-const { existsSync, writeFileSync } = require('node:fs')
-const { execSync, spawnSync } = require('node:child_process')
-const { resolve } = require('node:path')
+import { existsSync, writeFileSync } from 'node:fs'
+import { execSync, spawnSync } from 'node:child_process'
+import { resolve } from 'node:path'
 
 const myArgs = process.argv.slice(2)
 
@@ -46,7 +46,7 @@ if (myArgs[0] === '--update') {
         process.exit(1)
     }
 
-    execSync(`npm install @typescript/native-preview --prefix "${__dirname}" --global --no-bin-links`)
+    execSync(`npm install @typescript/native-preview --prefix "${import.meta.dirname}" --global --no-bin-links`)
     process.exit()
 }
 
@@ -58,9 +58,9 @@ if (firstTSFile === undefined) {
 
 let tscPath
 if (process.platform === 'win32') {
-    tscPath = resolve(__dirname, 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
+    tscPath = resolve(import.meta.dirname, 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
 } else {
-    tscPath = resolve(__dirname, 'lib', 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
+    tscPath = resolve(import.meta.dirname, 'lib', 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
 }
 
 const tscStatus = spawnSync('node', [
