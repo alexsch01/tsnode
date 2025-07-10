@@ -31,7 +31,8 @@ if (myArgs[0] === '--init') {
         "module": "nodenext",
         "rewriteRelativeImportExtensions": true,
         "erasableSyntaxOnly": true,
-        "verbatimModuleSyntax": true
+        "verbatimModuleSyntax": true,
+        "strictNullChecks": true
     }
 }`
         )
@@ -71,6 +72,7 @@ const tscStatus = spawnSync('node', [
     '--rewriteRelativeImportExtensions',
     '--erasableSyntaxOnly',
     '--verbatimModuleSyntax',
+    '--strictNullChecks',
     firstTSFile
 ], {stdio: 'inherit'}).status
 
