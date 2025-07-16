@@ -52,8 +52,7 @@ if (myArgs[0] === '--update') {
     process.exit()
 }
 
-const firstTSFile = myArgs.find(a => a.endsWith('.ts'))
-if (firstTSFile === undefined) {
+if ( myArgs.find(a => a.endsWith('.ts') === undefined ) {
     console.error("Error: Must provide a ts file")
     process.exit(1)
 }
@@ -65,8 +64,9 @@ if (process.platform === 'win32') {
     tscPath = resolve(import.meta.dirname, 'lib', 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
 }
 
-const tscStatus = spawnSync('node', [tscPath], {stdio: 'inherit'}).status
-if (tscStatus !== 0) {
+const { status: tscStatus, output } = spawnSync('node', [tscPath])
+if (tscStatus === 2) {
+    console.error(output[1].toString().slice(0, -1))
     process.exit(1)
 }
 
