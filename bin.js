@@ -64,7 +64,7 @@ if (process.platform === 'win32') {
     tscPath = resolve(import.meta.dirname, 'lib', 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
 }
 
-const { status: tscStatus, output } = spawnSync('node', [tscPath])
+const { status: tscStatus, stdout: tscStdout } = spawnSync('node', [tscPath])
 
 if (tscStatus === 1) {
     console.error("Error: tsconfig.json not found, run tsnode --init")
@@ -72,7 +72,7 @@ if (tscStatus === 1) {
 }
 
 if (tscStatus === 2) {
-    process.stderr.write(output[1])
+    process.stderr.write(tscStdout)
     process.exit(1)
 }
 
