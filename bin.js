@@ -72,7 +72,7 @@ if (tscStatus === 1) {
 }
 
 if (tscStatus === 2) {
-    console.error(output[1].toString().slice(0, -1))
+    process.stderr.write(output[1])
     process.exit(1)
 }
 
