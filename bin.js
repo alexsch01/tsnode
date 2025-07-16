@@ -32,7 +32,8 @@ if (myArgs[0] === '--init') {
         "rewriteRelativeImportExtensions": true,
         "erasableSyntaxOnly": true,
         "verbatimModuleSyntax": true,
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "resolveJsonModule": true,
     }
 }`
         )
@@ -64,20 +65,9 @@ if (process.platform === 'win32') {
     tscPath = resolve(import.meta.dirname, 'lib', 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
 }
 
-const tscStatus = spawnSync('node', [
-    tscPath,
-    '--noEmit',
-    '--target', 'esnext',
-    '--module', 'nodenext',
-    '--rewriteRelativeImportExtensions',
-    '--erasableSyntaxOnly',
-    '--verbatimModuleSyntax',
-    '--strictNullChecks',
-    firstTSFile
-], {stdio: 'inherit'}).status
-
+const tscStatus = spawnSync('node', [tscPath], {stdio: 'inherit'}).status
 if (tscStatus !== 0) {
-    process.exit(tscStatus)
+    process.exit(1)
 }
 
 process.exit(spawnSync('node', myArgs, {stdio: 'inherit'}).status)
