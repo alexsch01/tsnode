@@ -8,7 +8,7 @@ const myArgs = process.argv.slice(2)
 
 if (myArgs[0] === '--init') {
     if (myArgs.length !== 1) {
-        console.error("Error: Unknown command")
+        console.error("Error: unknown command")
         process.exit(1)
     }
 
@@ -44,7 +44,7 @@ if (myArgs[0] === '--init') {
 
 if (myArgs[0] === '--update') {
     if (myArgs.length !== 1) {
-        console.error("Error: Unknown command")
+        console.error("Error: unknown command")
         process.exit(1)
     }
 
@@ -52,8 +52,8 @@ if (myArgs[0] === '--update') {
     process.exit()
 }
 
-if ( myArgs.find(a => a.endsWith('.ts') === undefined ) {
-    console.error("Error: Must provide a ts file")
+if ( myArgs.find(a => a.endsWith('.ts')) === undefined ) {
+    console.error("Error: must provide a ts file")
     process.exit(1)
 }
 
@@ -65,6 +65,12 @@ if (process.platform === 'win32') {
 }
 
 const { status: tscStatus, output } = spawnSync('node', [tscPath])
+
+if (tscStatus === 1) {
+    console.error("Error: tsconfig.json not found, run tsnode --init")
+    process.exit(1)
+}
+
 if (tscStatus === 2) {
     console.error(output[1].toString().slice(0, -1))
     process.exit(1)
