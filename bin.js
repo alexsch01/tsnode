@@ -34,6 +34,8 @@ if (myArgs[0] === '--init') {
         "verbatimModuleSyntax": true,
         "strictNullChecks": true,
         "resolveJsonModule": true,
+        "strict": true,
+        "noUncheckedIndexedAccess": true,
     }
 }`
         )
