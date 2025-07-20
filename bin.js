@@ -32,7 +32,6 @@ if (myArgs[0] === '--init') {
         "rewriteRelativeImportExtensions": true,
         "erasableSyntaxOnly": true,
         "verbatimModuleSyntax": true,
-        "strictNullChecks": true,
         "resolveJsonModule": true,
         "strict": true,
         "noUncheckedIndexedAccess": true,
