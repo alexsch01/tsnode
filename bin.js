@@ -72,7 +72,7 @@ if (tscStatus === 1) {
     process.exit(1)
 }
 
-if (tscStatus === 2) {
+if (tscStatus !== 0) {
     process.stderr.write(tscStdout)
     process.exit(1)
 }
