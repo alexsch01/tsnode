@@ -8,7 +8,11 @@ https://github.com/alexsch01/tsnode
 
 ### How to install
 
-requires Node.js v24.3.0 or later
+- Node.js 22 (LTS) - v22.18.0 or later
+
+  **OR**
+
+- Node.js v24.3.0 or later
 ```
 npm i -g @alexsch01/tsnode
 ```
