@@ -5,15 +5,14 @@ import { execSync, spawnSync } from 'node:child_process'
 import { resolve } from 'node:path'
 
 const myArgs = process.argv.slice(2)
+const packageJSON = resolve(process.cwd(), 'package.json')
+const tsconfigJSON = resolve(process.cwd(), 'tsconfig.json')
 
 if (myArgs[0] === '--init') {
     if (myArgs.length !== 1) {
         console.error("Error: unknown command")
         process.exit(1)
     }
-
-    const packageJSON = resolve(process.cwd(), 'package.json')
-    const tsconfigJSON = resolve(process.cwd(), 'tsconfig.json')
 
     if (!existsSync(packageJSON)) {
         writeFileSync(packageJSON, 
@@ -58,5 +57,10 @@ if ( myArgs.find(a => a.endsWith('.ts')) === undefined ) {
     process.exit(1)
 }
 
-myArgs.unshift('--import', `file:${resolve(import.meta.dirname, '_loader.js').replace(/\\/g, '/')}`)
+if (!existsSync(packageJSON) || !existsSync(tsconfigJSON)) {
+    console.error("Error: run tsnode --init")
+    process.exit(1)
+}
+
+myArgs.unshift('--import', `file:${resolve(import.meta.dirname, 'loader.js').replace(/\\/g, '/')}`)
 process.exit(spawnSync('node', myArgs, {stdio: 'inherit'}).status)
