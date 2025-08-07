@@ -1,12 +1,10 @@
 import { spawnSync } from 'node:child_process'
 import { resolve } from 'node:path'
 
-let mainScript
+let isFirstScript = true
 
 export function load(url, context, nextLoad) {
-    mainScript ??= url
-
-    if (url === mainScript) {
+    if (isFirstScript) {
         let tscPath
         if (process.platform === 'win32') {
             tscPath = resolve(import.meta.dirname, 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
@@ -25,6 +23,8 @@ export function load(url, context, nextLoad) {
             process.stderr.write(tscStdout)
             process.exit(1)
         }
+
+        isFirstScript = false
     }
 
     return nextLoad(url, context)
