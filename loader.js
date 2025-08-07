@@ -18,7 +18,10 @@ registerHooks({
 
             if (tscStatus !== 0) {
                 process.stderr.write(tscStdout)
-                process.exit(1)
+
+                const output = nextLoad(url, context)
+                output.source = Buffer.from(`import "${url}"; process.exit(1)`)
+                return output
             }
 
             firstScript = false
