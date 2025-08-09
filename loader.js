@@ -14,10 +14,8 @@ registerHooks({
                 tscPath = resolve(import.meta.dirname, 'lib', 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
             }
 
-            const { status: tscStatus, stdout: tscStdout } = spawnSync('node', [tscPath, '--pretty'])
+            const { status: tscStatus } = spawnSync('node', [tscPath], { stdio: ['inherit', process.stderr, 'inherit'] })
             if (tscStatus !== 0) {
-                process.stderr.write(tscStdout)
-
                 const output = nextLoad(url, context)
                 output.source = Buffer.from('process.exit(1)')
                 return output
