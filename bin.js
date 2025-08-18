@@ -3,6 +3,7 @@
 import { existsSync, writeFileSync } from 'node:fs'
 import { execSync, spawnSync } from 'node:child_process'
 import { resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 
 const myArgs = process.argv.slice(2)
 const packageJSON = resolve(process.cwd(), 'package.json')
@@ -62,5 +63,5 @@ if (!existsSync(packageJSON) || !existsSync(tsconfigJSON)) {
     process.exit(1)
 }
 
-myArgs.unshift('--import', `file:${resolve(import.meta.dirname, 'loader.js').replace(/\\/g, '/')}`)
+myArgs.unshift('--import', pathToFileURL(resolve(import.meta.dirname, 'loader.js')).href)
 process.exit(spawnSync('node', myArgs, {stdio: 'inherit'}).status)
