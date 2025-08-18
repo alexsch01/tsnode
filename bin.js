@@ -49,7 +49,7 @@ if (myArgs[0] === '--update') {
         process.exit(1)
     }
 
-    execSync(`npm install @typescript/native-preview --prefix "${import.meta.dirname}" --global --no-bin-links`)
+    execSync(`npm update --prefix "${import.meta.dirname}" --global --no-bin-links`)
     process.exit()
 }
 
