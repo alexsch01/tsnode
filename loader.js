@@ -1,6 +1,21 @@
 import { registerHooks } from 'node:module'
+import { existsSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { resolve } from 'node:path'
+
+const myArgs = process.argv
+const packageJSON = resolve(process.cwd(), 'package.json')
+const tsconfigJSON = resolve(process.cwd(), 'tsconfig.json')
+
+if ( myArgs.find(a => a.endsWith('.ts')) === undefined ) {
+    console.error("Error: must provide a ts file")
+    process.exit(1)
+}
+
+if (!existsSync(packageJSON) || !existsSync(tsconfigJSON)) {
+    console.error("Error: run tsnode --init")
+    process.exit(1)
+}
 
 let firstScript = true
 
