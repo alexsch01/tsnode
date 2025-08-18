@@ -19,9 +19,14 @@ if (myArgs[0] === '--init') {
     if (!existsSync(packageJSON)) {
         writeFileSync(packageJSON, 
             `{
-    "type": "module"
+  "type": "module"
 }`
         )
+    } else {
+        writeFileSync(packageJSON, JSON.stringify({
+            type: 'module',
+            ...JSON.parse(readFileSync(packageJSON).toString())
+        }, null, 2))
     }
     if (!existsSync(tsconfigJSON)) {
         writeFileSync(tsconfigJSON,
