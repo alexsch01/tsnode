@@ -13,7 +13,7 @@ if ( myArgs.find(a => a.endsWith('.ts')) === undefined ) {
 }
 
 if (!existsSync(packageJSON) || !existsSync(tsconfigJSON)) {
-    console.error("Error: run tsnode --init")
+    console.error("Error: run npx tsnode --init")
     process.exit(1)
 }
 
