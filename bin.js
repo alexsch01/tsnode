@@ -6,14 +6,15 @@ import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
 const myArgs = process.argv.slice(2)
-const packageJSON = resolve(process.cwd(), 'package.json')
-const tsconfigJSON = resolve(process.cwd(), 'tsconfig.json')
 
 if (myArgs[0] === '--init') {
     if (myArgs.length !== 1) {
         console.error("Error: unknown command")
         process.exit(1)
     }
+
+    const packageJSON = resolve(process.cwd(), 'package.json')
+    const tsconfigJSON = resolve(process.cwd(), 'tsconfig.json')
 
     if (!existsSync(packageJSON)) {
         writeFileSync(packageJSON, 
@@ -51,16 +52,6 @@ if (myArgs[0] === '--update') {
 
     execSync(`npm update --prefix "${import.meta.dirname}" --global --no-bin-links`)
     process.exit()
-}
-
-if ( myArgs.find(a => a.endsWith('.ts')) === undefined ) {
-    console.error("Error: must provide a ts file")
-    process.exit(1)
-}
-
-if (!existsSync(packageJSON) || !existsSync(tsconfigJSON)) {
-    console.error("Error: run tsnode --init")
-    process.exit(1)
 }
 
 myArgs.unshift('--import', pathToFileURL(resolve(import.meta.dirname, 'loader.js')).href)
