@@ -17,5 +17,8 @@
         "typescript",
         "nodejs",
         "type-checking"
-    ]
+    ],
+    "exports": {
+        ".": "./loader.js"
+    }
 }
