@@ -4,7 +4,6 @@
     "type": "module",
     "bin": "bin.js",
     "scripts": {
-        "preinstall": "node scripts/preinstall.js",
         "postinstall": "node scripts/postinstall.js"
     },
     "engines": {
