@@ -20,5 +20,8 @@
     ],
     "exports": {
         ".": "./loader.js"
+    },
+    "dependencies": {
+        "@typescript/native-preview": "latest"
     }
 }
