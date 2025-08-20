@@ -49,15 +49,5 @@ if (myArgs[0] === '--init') {
     process.exit()
 }
 
-if (myArgs[0] === '--update') {
-    if (myArgs.length !== 1) {
-        console.error("Error: unknown command")
-        process.exit(1)
-    }
-
-    execSync(`npm update --prefix "${import.meta.dirname}" --global --no-bin-links`)
-    process.exit()
-}
-
 myArgs.unshift('--import', pathToFileURL(resolve(import.meta.dirname, 'loader.js')).href)
 process.exit(spawnSync('node', myArgs, {stdio: 'inherit'}).status)
