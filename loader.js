@@ -3,13 +3,7 @@ import { existsSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { resolve } from 'node:path'
 
-let tscPath
-if (process.platform === 'win32') {
-    tscPath = resolve(import.meta.dirname, 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
-} else {
-    tscPath = resolve(import.meta.dirname, 'lib', 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
-}
-
+const tscPath = resolve(import.meta.dirname, 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
 if (process.argv[1] !== tscPath) {
     const myArgs = process.argv
     const packageJSON = resolve(process.cwd(), 'package.json')
