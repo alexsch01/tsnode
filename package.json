@@ -3,9 +3,6 @@
     "version": "0.1.33",
     "type": "module",
     "bin": "bin.js",
-    "scripts": {
-        "postinstall": "node scripts/postinstall.js"
-    },
     "engines": {
         "node": "^22.18.0 || >=24.3.0"
     },
