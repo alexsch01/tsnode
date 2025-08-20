@@ -3,7 +3,11 @@ import { existsSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { resolve } from 'node:path'
 
-const tscPath = resolve(import.meta.dirname, 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
+let tscPath = resolve(import.meta.dirname, 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js') // global install
+if (!existsSync(tscPath)) {
+    tscPath = resolve(process.cwd(), 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js') // local install
+}
+
 if (process.argv[1] !== tscPath) {
     const myArgs = process.argv
     const packageJSON = resolve(process.cwd(), 'package.json')
