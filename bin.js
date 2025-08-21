@@ -3,6 +3,7 @@
 import { existsSync, writeFileSync, readFileSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 
 const myArgs = process.argv.slice(2)
 
@@ -48,5 +49,5 @@ if (myArgs[0] === '--init') {
     process.exit()
 }
 
-myArgs.unshift('--import=@alexsch01/tsnode')
+myArgs.unshift('--import', pathToFileURL(resolve(import.meta.dirname, 'loader.js')).href)
 process.exit(spawnSync('node', myArgs, {stdio: 'inherit'}).status)
