@@ -38,8 +38,7 @@ if (myArgs[0] === '--init') {
         "rewriteRelativeImportExtensions": true,
         "erasableSyntaxOnly": true,
         "verbatimModuleSyntax": true,
-        "resolveJsonModule": true,
-        "strict": true,
+        "types": ["node"],
         "noUncheckedIndexedAccess": true,
     }
 }`
