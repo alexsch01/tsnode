@@ -8,28 +8,13 @@ https://github.com/alexsch01/tsnode
 
 ### System Requirements
 
-- Node.js 22 (LTS) - v22.18.0 or later
+- Node.js 22 - v22.18.0 or later
 
   **OR**
 
 - Node.js v24.3.0 or later
 
-### How to use (Local install)
-
-```
-$ mkdir proj
-$ cd proj
-$ npm install @alexsch01/tsnode
-$ npx tsnode --init
-
-[Make a main.ts file]
-
-$ npx tsnode main.ts
-OR
-$ node --import @alexsch01/tsnode main.ts
-```
-
-### How to use (Global install)
+### How to use
 
 ```
 $ npm install -g @alexsch01/tsnode
@@ -39,6 +24,7 @@ $ npm install -g @alexsch01/tsnode
 $ mkdir proj
 $ cd proj
 $ tsnode --init
+$ npm install -D @types/node
 
 [Make a main.ts file]
 
