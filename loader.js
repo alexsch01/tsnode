@@ -3,10 +3,7 @@ import { existsSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { resolve } from 'node:path'
 
-let tscPath = resolve(import.meta.dirname, 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js') // global install
-if (!existsSync(tscPath)) {
-    tscPath = resolve(process.cwd(), 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js') // local install
-}
+const tscPath = resolve(import.meta.dirname, 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
 
 const myArgs = process.argv
 const packageJSON = resolve(process.cwd(), 'package.json')
@@ -18,7 +15,7 @@ if ( myArgs.find(a => a.endsWith('.ts')) === undefined ) {
 }
 
 if (!existsSync(packageJSON) || !existsSync(tsconfigJSON)) {
-    console.error("Error: run npx tsnode --init")
+    console.error("Error: run tsnode --init")
     process.exit(1)
 }
 
@@ -28,8 +25,7 @@ registerHooks({
     load(url, context, nextLoad) {
         if (firstScript) {
             const { status: tscStatus } = spawnSync('node', [tscPath], {
-                stdio: ['inherit', process.stderr, 'inherit'],
-                env: { NODE_OPTIONS: '' },
+                stdio: ['inherit', process.stderr, 'inherit']
             })
 
             if (tscStatus !== 0) {
