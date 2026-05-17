@@ -16,7 +16,7 @@ if (myArgs[0] === '--init') {
     }
 
     if (!existsSync(packageJSON)) {
-        writeFileSync(packageJSON, 
+        writeFileSync(packageJSON,
             `{
   "type": "module"
 }`
