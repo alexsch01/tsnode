@@ -2,7 +2,11 @@ import { registerHooks } from 'node:module'
 import { spawnSync } from 'node:child_process'
 import { resolve } from 'node:path'
 
-const tscPath = resolve(import.meta.dirname, 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
+let tscPath = resolve(import.meta.dirname, 'node_modules', '@typescript', 'native-preview', 'bin', 'tsgo.js')
+if (!existsSync(tscPath)) {
+    tscPath = resolve(import.meta.dirname, '..', '..', '@typescript', 'native-preview', 'bin', 'tsgo.js')
+}
+
 let firstScript = true
 
 registerHooks({
