@@ -57,5 +57,12 @@ if (!existsSync(packageJSON) || !existsSync(tsconfigJSON)) {
     process.exit(1)
 }
 
-myArgs.unshift('--import', pathToFileURL(resolve(import.meta.dirname, 'loader.js')).href)
+const loaderUrl = new URL(pathToFileURL(resolve(import.meta.dirname, 'loader.js')))
+let tscPath = resolve(import.meta.dirname, 'node_modules/typescript/lib/tsc.js')
+if (!existsSync(tscPath)) {
+    tscPath = resolve(import.meta.dirname, '../../typescript/lib/tsc.js')
+}
+loaderUrl.searchParams.set('tscPath', tscPath)
+
+myArgs.unshift('--import', loaderUrl.href)
 process.exit(spawnSync('node', myArgs, {stdio: 'inherit'}).status)
